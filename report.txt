@@ -1,0 +1,17 @@
+This code is a Flask web application that demonstrates the use of polynomial regression for stock price prediction. The application uses a CSV file "result.csv" containing historical stock prices to train a polynomial regression model, and then provides a user interface to predict the stock price based on user-provided inputs.
+
+The code begins by importing the necessary libraries and modules, including Flask, pandas, NumPy, joblib, and scikit-learn. It creates a Flask application instance named "app" and sets its template folder to "/app". It then reads the CSV file containing the historical stock prices into a Pandas dataframe named "data".
+
+The code splits the data into training and testing sets, with 80% of the data used for training and 20% for testing. It defines the input features for the model as "Open", "High", "Low", and "Volume", and the target variable as "Close". It creates polynomial features of degree 2 using scikit-learn's PolynomialFeatures class. It trains a linear regression model on the polynomial features using scikit-learn's LinearRegression class. It then predicts the close values for the test data and prints the mean squared error of the model on the test data. Finally, it saves the model using joblib.dump() to a file named "model.pkl".
+
+The code defines three Flask routes:
+
+The root route ("/") returns an HTML template named "index.html", which displays a chart of the historical stock prices and the model's performance metrics (R-squared, mean squared error, and mean absolute error).
+The "/input" route returns an HTML template named "Input.html", which displays a form for the user to input the stock price features (Open, High, Low, and Volume).
+The "/predict" route is triggered when the user submits the form. It extracts the input features from the form, creates a Pandas dataframe with the input features, transforms the dataframe into polynomial features using the same PolynomialFeatures object used for training, and predicts the stock price using the trained model. It then displays the prediction on an HTML template named "prediction.html".
+The code runs the Flask application on port 8000 and with the debug mode enabled. When the application is run, the user can navigate to the root URL to see the historical stock price chart and the model's performance metrics. They can navigate to the "/input" route to input their own stock price features, and the "/predict" route to see the predicted stock price based on their input. The application uses polynomial regression to predict the stock price, which can potentially improve the accuracy of the predictions compared to a linear regression model.
+
+
+
+
+
